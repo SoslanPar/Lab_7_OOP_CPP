@@ -14,8 +14,15 @@ void KnightErrant::accept(Visitor& visitor) {
 }
 
 void KnightErrant::printInfo() const {
-    // Специфическая информация для медведя
     std::cout << "KnightErrant Info - Name: " << getName()
               << ", Position: (" << getX() << ", " << getY() << ")"
               << std::endl;
+}
+
+int KnightErrant::getMoveDistance() const {
+    return 30;
+}
+
+int KnightErrant::getKillDistance() const {
+    return 10;
 }

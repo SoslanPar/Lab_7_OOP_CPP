@@ -14,8 +14,15 @@ void Elf::accept(Visitor& visitor) {
 }
 
 void Elf::printInfo() const {
-    // Специфическая информация для медведя
     std::cout << "Elf Info - Name: " << getName()
               << ", Position: (" << getX() << ", " << getY() << ")"
               << std::endl;
+}
+
+int Elf::getMoveDistance() const {
+    return 10;
+}
+
+int Elf::getKillDistance() const {
+    return 50;
 }

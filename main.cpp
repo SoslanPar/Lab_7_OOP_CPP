@@ -7,10 +7,11 @@
 
 int main() {
     try {
-        std::cout << "=== Balagur Fate 3 - Dungeon Editor ===" << std::endl;
+        std::cout << "=== Balagur Fate 3 - Async Battle ===" << std::endl;
         std::cout << std::endl;
 
-        Arena arena(500, 500);
+        // Размер карты 100x100 как в задании
+        Arena arena(100, 100);
 
         auto consoleObserver = std::make_shared<ConsoleObserver>();
         auto fileObserver = std::make_shared<FileObserver>("log.txt");
@@ -18,47 +19,20 @@ int main() {
         arena.addObserver(consoleObserver);
         arena.addObserver(fileObserver);
 
-        std::cout << "1. Создаём NPC..." << std::endl;
+        std::cout << "Generating 50 random NPCs..." << std::endl;
+        arena.generateRandomNpcs(50);
+        
+        std::cout << "Initial State:" << std::endl;
+        arena.printMap();
 
-        arena.createAndAddNpc("Elf", "Legolas", 100, 100);
-        arena.createAndAddNpc("Rogue", "BadGuy", 150, 150);
-        arena.createAndAddNpc("KnightErrant", "Hero", 120, 120);
-        arena.createAndAddNpc("Elf", "Totsamiy", 110, 110);
-        arena.createAndAddNpc("Rogue", "Plohish", 200, 200);
-        std::cout << "Создано NPC: " << arena.getNpcCount() << std::endl;
-        std::cout << std::endl;
+        std::cout << "Starting game for 30 seconds..." << std::endl;
+        arena.startGame(30);
 
-        std::cout << "2. Список всех NPC на арене:" << std::endl;
-        arena.printAllNpcs();
-        std::cout << std::endl;
-
-        std::cout << "3. Сохраняем NPC в файл 'npcs.txt'..." << std::endl;
-        arena.saveToFile("npcs.txt");
-        std::cout << "Сохранено!" << std::endl;
-        std::cout << std::endl;
-
-        std::cout << "4. Запускаем боевой режим (дальность: 100 метров)..." << std::endl;
-        std::cout << "--- НАЧАЛО БОЯ ---" << std::endl;
-        arena.startBattle(100.0);
-        std::cout << "--- КОНЕЦ БОЯ ---" << std::endl;
-        std::cout << std::endl;
-
-        std::cout << "5. Список выживших NPC:" << std::endl;
-        arena.printAllNpcs();
-        std::cout << "Осталось NPC: " << arena.getNpcCount() << std::endl;
-        std::cout << std::endl;
-
-        std::cout << "6. Очищаем арену и загружаем из файла..." << std::endl;
-        arena.clear();
-        arena.loadFromFile("npcs.txt");
-        std::cout << "Загружено NPC: " << arena.getNpcCount() << std::endl;
-        arena.printAllNpcs();
-        std::cout << std::endl;
-
-        std::cout << "=== Программа завершена успешно ===" << std::endl;
+        std::cout << "Game Over!" << std::endl;
+        arena.printSurvivors();
 
     } catch (const std::exception& e) {
-        std::cerr << "Ошибка: " << e.what() << std::endl;
+        std::cerr << "Error: " << e.what() << std::endl;
         return 1;
     }
 

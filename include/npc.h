@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <memory>
+#include <mutex>
 
 class Visitor;  // Предварительное объявление класса Visitor
 
@@ -27,9 +28,19 @@ class Npc {
         // friend функция для вывода NPC в поток
         friend std::ostream& operator<<(std::ostream& os, const Npc& npc);
 
+        // Методы для игры
+        bool isAlive() const;
+        void kill();
+        void setPosition(int x, int y);
+
+        virtual int getMoveDistance() const = 0;
+        virtual int getKillDistance() const = 0;
+
     private:
         int x_;
         int y_;
         std::string type_;
         std::string name_;
+        mutable std::mutex mutex_;
+        bool alive_ = true;
 };

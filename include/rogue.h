@@ -10,6 +10,9 @@ class Rogue : public Npc {
 
         void printInfo() const override;
 
+        int getMoveDistance() const override;
+        int getKillDistance() const override;
+
     private:
         static const std::string kType;
 };

@@ -14,8 +14,15 @@ void Rogue::accept(Visitor& visitor) {
 }
 
 void Rogue::printInfo() const {
-    // Специфическая информация для медведя
     std::cout << "Rogue Info - Name: " << getName()
               << ", Position: (" << getX() << ", " << getY() << ")"
               << std::endl;
+}
+
+int Rogue::getMoveDistance() const {
+    return 10;
+}
+
+int Rogue::getKillDistance() const {
+    return 10;
 }
