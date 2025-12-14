@@ -1,0 +1,5 @@
+Elf Legolas 100 200
+Rogue BadGuy 150 250
+KnightErrant Hero 50 75
+Elf Totsamiy 200 300
+Rogue Plohish 400 450
